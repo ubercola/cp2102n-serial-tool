@@ -1,0 +1,19 @@
+---
+description: Safety and protocol requirements for the CP2102N serial tool
+alwaysApply: true
+---
+
+# CP2102N safety requirements
+
+- Read `docs/PROTOCOL.md` before changing USB requests or config offsets.
+- CP2102N uses full-block `GetConfig`/`SetConfig`; never replace this with
+  legacy `CP210x_SetSerialNumber`.
+- Treat the config as OTP. Minimize writes and never add automatic retries.
+- Refuse writes unless config size is 678, version is 1, and
+  `enableConfigUpdate` is `0xff`.
+- Preserve every config byte except the serial area and checksum.
+- Recalculate Fletcher-16 and verify the full config by reading it back.
+- Never lock the configuration or change byte 4.
+- Keep user selection interactive; never program all connected devices.
+- Add or update tests for protocol, descriptor, checksum, and reset changes.
+- Do not test writes on physical hardware unless the user explicitly asks.
