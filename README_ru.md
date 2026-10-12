@@ -45,6 +45,18 @@ sudo pacman -S python libusb
 
 ## Перенос и установка
 
+Установка из GitHub:
+
+```bash
+git clone https://github.com/ubercola/cp2102n-serial-tool.git
+cd cp2102n-serial-tool
+chmod +x setup.sh run.sh install-udev-rule.sh
+./setup.sh
+sudo ./install-udev-rule.sh
+```
+
+Альтернативный вариант — скопировать проект вручную:
+
 Скопируйте целиком каталог `cp2102n-serial-tool` на целевую машину.
 Текущий каталог `.venv` переносить между машинами не нужно.
 
